@@ -1,0 +1,57 @@
+plugins {
+	id 'org.springframework.boot' version '2.7.4'
+	id 'io.spring.dependency-management' version '1.0.14.RELEASE'
+	id 'java'
+	/* 
+		adds plugin for war packaging instead of jar, for jar just remove this plugin
+		ucomment below statement to add plugin to generate war packaging
+	*/ 
+	/*id 'war'*/
+}
+
+group = 'com.shreeram'
+version = '0.0.1'
+sourceCompatibility = '11'
+
+repositories {
+	mavenCentral()
+}
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web' 
+	implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+	implementation 'org.springframework.boot:spring-boot-starter-security'
+	implementation 'org.springframework.boot:spring-boot-starter-jetty'
+	implementation 'net.sf.jsefa:jsefa:1.1.1.RELEASE'
+	//implementation 'org.mybatis.spring.boot:mybatis-spring-boot-starter:2.2.1'
+	runtimeOnly 'com.h2database:h2'
+	implementation 'org.postgresql:postgresql'
+	developmentOnly 'org.springframework.boot:spring-boot-devtools'
+	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	implementation 'org.springframework.security:spring-security-test'
+}
+
+configurations.all {
+	resolutionStrategy.eachDependency { DependencyResolveDetails details ->
+		if (details.requested.group == 'org.apache.logging.log4j') {
+			details.useVersion  '2.17.1'
+		}	
+	}
+	exclude module: 'spring-boot-starter-tomcat'
+  	exclude group: 'org.apache.tomcat'
+}
+/*
+	war and bootWar tasks ensures to package a plain war without dependencies
+	uncomment below sninppet to create war
+*/
+/*war {
+	enabled = true
+	classifier = ''
+}
+
+bootWar {
+	enabled = false
+}*/
+test {
+	useJUnitPlatform()
+}

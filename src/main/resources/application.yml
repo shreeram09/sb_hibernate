@@ -1,0 +1,46 @@
+server:
+  port: 8888
+reflectoring:
+  true
+spring:
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test_exam
+    username: thrdexams1
+    password: thrdexams
+  jpa:
+    show-sql: true
+    properties:
+      hibernate:
+        generate-statistics: true
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        jdbc:
+          batch-size: 10
+          lob:
+            non_contextual_creation: 'true'
+# Hibernate ddl auto (create, create-drop, validate, update)
+        ddl-auto: update  
+        current_session_context_class: thread #org.springframework.orm.hibernate5.SpringSessionContext
+logging:
+  level:
+    org.springframework.web: "debug"
+    org.hibernate: "error"
+
+#inmemory db h2
+#spring:
+#  jpa:
+#    hibernate:
+#      ddl-auto: update
+#    properties:
+#      hibernate:
+#        dialect: org.hibernate.dialect.H2Dialect
+#  datasource:
+#   driver-class-name: org.h2.Driver
+#   url: jdbc:h2:mem:testdb
+#   username: sa
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2
+#      settings:
+#        trace: false
+#        web-allow-others: false
