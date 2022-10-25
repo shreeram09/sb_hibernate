@@ -1,7 +1,7 @@
 # sb_hibernate
   spring boot project for hibernate integration using in memory database
 
-## initial setups
+## initial git repo connections
   ### …or create a new repository on the command line
 
     echo "# spring boot hibernate integration" >> README.md  
