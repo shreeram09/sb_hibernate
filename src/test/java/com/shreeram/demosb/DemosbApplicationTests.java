@@ -26,7 +26,10 @@ class DemosbApplicationTests {
 
 	@Test
 	void divideByZero_infinity_integer_test() {
-		assertThatThrownBy(()->{(5/0)}, "testing explosive code")
+		assertThatThrownBy(()-> {
+			int x=5;
+			int y=x/0;
+		} , "testing explosive code")
 		.isInstanceOf(ArithmeticException.class)
 		.hasMessage("/ by zero");
 	}
