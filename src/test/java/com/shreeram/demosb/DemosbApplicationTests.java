@@ -1,5 +1,7 @@
 package com.shreeram.demosb;
 
+import static org.assertj.core.api.Assertions.assertThat;
+
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -14,6 +16,12 @@ import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
 class DemosbApplicationTests {
+	@Test
+	void divideByZero_infinity_test() {
+		double x = 5.66;
+		String actual = String.valueOf(x/0);
+		assertThat(actual).isEqualTo("Infinity");
+	}
 
 	@Test
 	void contextLoads() {
