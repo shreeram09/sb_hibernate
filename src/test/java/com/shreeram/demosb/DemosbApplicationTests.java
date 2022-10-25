@@ -1,6 +1,7 @@
 package com.shreeram.demosb;
 
 import static org.assertj.core.api.Assertions.assertThat;
+import static org.assertj.core.api.Assertions.assertThatThrownBy;
 
 import java.util.concurrent.ExecutionException;
 import java.util.concurrent.ExecutorService;
@@ -17,12 +18,18 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 class DemosbApplicationTests {
 	@Test
-	void divideByZero_infinity_test() {
+	void divideByZero_infinity_fractional_test() {
 		double x = 5.66;
 		String actual = String.valueOf(x/0);
 		assertThat(actual).isEqualTo("Infinity");
 	}
 
+	@Test
+	void divideByZero_infinity_integer_test() {
+		assertThatThrownBy(()->{(5/0)}, "testing explosive code")
+		.isInstanceOf(ArithmeticException.class)
+		.hasMessage("/ by zero");
+	}
 	@Test
 	void contextLoads() {
 		ReentrantLock rlock = new ReentrantLock();
