@@ -21,6 +21,7 @@ class DemosbApplicationTests {
 	void divideByZero_infinity_fractional_test() {
 		double x = 5.66;
 		String actual = String.valueOf(x/0);
+		System.out.println(actual);
 		assertThat(actual).isEqualTo("Infinity");
 	}
 
@@ -29,9 +30,18 @@ class DemosbApplicationTests {
 		assertThatThrownBy(()-> {
 			int x=5;
 			int y=x/0;
+			System.out.println(y);
 		} , "testing explosive code")
 		.isInstanceOf(ArithmeticException.class)
 		.hasMessage("/ by zero");
+	}
+	@Test
+	void floating_point_precission_test() {
+		float x = 0.1f;
+		int y = 3;
+		double z = x*y;
+		System.out.println(z);
+		assertThat(z).isNotEqualTo(0.3);
 	}
 	@Test
 	void contextLoads() {
