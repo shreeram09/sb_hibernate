@@ -41,7 +41,7 @@ class DemosbApplicationTests {
 		int y = 3;
 		double z = x*y;
 		System.out.println(z);
-		assertThat(z).isEqualTo(0.3);
+		assertThat(z).isNotEqualTo(0.3);
 	}
 	@Test
 	void contextLoads() {
